@@ -1,0 +1,134 @@
+<html lang="en">
+  <head>
+    <title>Radio buttons test</title>
+    <style>
+      :root {
+        font-family: Helvetica, Arial, sans-serif;
+        --dark-grey: #323232;
+        --grey: #4c4c4c;
+        --lighter-grey: #999999;
+        --red: #d9534f;
+        --light-blue: #5bc0de;
+        --blue: #428bca;
+        --green: #5cb85c;
+      }
+
+      fieldset {
+        border: none;
+      }
+
+      .radio-wrapper {
+        margin: 0.7rem 0;
+        display: flex;
+        align-items: center;
+      }
+
+      input[type="radio"] {
+        opacity: 0;
+      }
+
+      input[type="radio"] ~ label {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        margin-left: 20px;
+      }
+
+      input[type="radio"] ~ label::before {
+        content: "";
+        position: absolute;
+        display: inline-block;
+        left: -24px;
+        bottom: 0;
+        width: 18px;
+        height: 18px;
+        background: transparent;
+        border-radius: 50%;
+        border: 1px solid var(--dark-grey);
+      }
+
+      input[type="radio"]:focus ~ label::before {
+        box-shadow: 0 0 8px 2px var(--blue);
+      }
+
+      input[type="radio"]:checked ~ label::before {
+        border-color: var(--blue);
+      }
+
+      input[type="radio"]:checked ~ label::after {
+        content: "";
+        position: absolute;
+        display: inline-block;
+        left: -20px;
+        top: 1px;
+        border-radius: 50%;
+        width: 12px;
+        height: 12px;
+        background: var(--blue);
+      }
+
+      input[type="radio"]:disabled ~ label,
+      input[type="radio"]:disabled ~ label::before,
+      input[type="radio"]:disabled ~ label::after {
+        color: var(--grey);
+        border-color: var(--lighter-grey);
+        cursor: not-allowed;
+      }
+
+      input[type="radio"]:disabled:checked ~ label::after {
+        background-color: var(--lighter-grey);
+      }
+
+      input[type="radio"].error ~ label::before {
+        border-color: var(--red);
+      }
+
+      input[type="radio"]:checked.error ~ label::after {
+        background: var(--red);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Elements and CSS</h1>
+    </header>
+    <main>
+      <section>
+        <h2>Radio buttons</h2>
+        <fieldset>
+          <legend>Choose dinner</legend>
+          <div class="radio-wrapper">
+            <input type="radio" value="pizza" name="dinner" id="pizza" />
+            <label for="pizza">Pizza</label>
+          </div>
+          <div class="radio-wrapper">
+            <input type="radio" value="sesameChicken" name="dinner" id="sesameChicken" />
+            <label for="sesameChicken">Sesame chicken</label>
+          </div>
+          <div class="radio-wrapper">
+            <input disabled type="radio" value="hamburger" name="dinner" id="hamburger" />
+            <label for="hamburger">Hamburger (disabled)</label>
+          </div>
+          <div class="radio-wrapper">
+            <input type="radio" class="error" value="kievChicken" name="dinner" id="kievChicken" />
+            <label for="kievChicken">Kiev chicken (erronous)</label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Example of a selected disabled radio button</legend>
+          <div class="radio-wrapper">
+            <input checked disabled type="radio" value="pizza" name="checkedAndDisabled" id="checkedAndDisabled" />
+            <label for="checkedAndDisabled">Pizza</label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Example of a selected disabled erronous radio button</legend>
+          <div class="radio-wrapper">
+            <input checked disabled type="radio" class="error" value="pizza" name="checkedDisabledAndErronous" id="checkedDisabledAndErronous" />
+            <label for="checkedDisabledAndErronous">Pizza</label>
+          </div>
+        </fieldset>
+      </section>
+    </main>
+  </body>
+</html>
